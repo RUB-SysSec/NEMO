@@ -14,7 +14,7 @@ Common use cases include:
 - We recommended running this software using [PyPy](https://pypy.org/download.html) (see performance stats below).
 
 ### About NEMO
-The scope of this project is not limited to passwords, but has also been used in the context of other human-chosen secrets like Emoji, PINs, and Android unlock patterns.
+The scope of this project is not limited to passwords, this software has also been used in the context of other human-chosen secrets like Emoji, PINs, and Android unlock patterns.
 
 The architecture of the software is inspired by [OMEN](https://github.com/RUB-SysSec/OMEN). More background information about OMEN can be found [here](https://www.mobsec.ruhr-uni-bochum.de/forschung/veroeffentlichungen/omen/) and [here](https://www.mobsec.ruhr-uni-bochum.de/media/mobsec/arbeiten/2014/12/12/2013-ma-angelstorf-omen.pdf). An excellent Python implementation of OMEN, called `py_omen`, by [Matthew Weir](https://dblp.uni-trier.de/pers/hd/w/Weir:Matt) ([@lakiw](https://twitter.com/lakiw)) can be found [here](https://github.com/lakiw/py_omen).
 
@@ -71,7 +71,7 @@ pas      CP1
       rd EP  (some literature uses this annotation: rd$)
 ```
 
-#### How big are they?
+#### How Big Are They?
 
 ```
 IP: alphabet_length ^ (ngram_size - 1)
@@ -79,7 +79,7 @@ CP: alphabet_length ^  ngram_size
 EP: alphabet_length ^ (ngram_size - 1)
 ```
 
-#### Some details for the ones interested:
+#### Some Details For the Ones Interested:
 
 :nerd_face:
 
@@ -99,7 +99,7 @@ cp_dict_full:
     ...
 ```
 
-We few months later, we optimized the memory consumption by only storing *n-grams* that really occur in the training corpus. If a rare *n-gram* like the 4-gram `o9py` does not occur in the training file, we used to return a very small default probability instead. This helped quite a lot to reduce the required memory, still, like Google Chrome, our solution easy occupied more than __20GB of RAM__. :poop:
+A few months later, we optimized the memory consumption by only storing *n-grams* that really occur in the training corpus. If a rare *n-gram* like the 4-gram `o9py` does not occur in the training file, we used to return a very small default probability instead. This helped quite a lot to reduce the required memory, still, like Google Chrome, our solution easy occupied more than __20GB of RAM__. :poop:
 
 ```
 cp_dict_sparse:
