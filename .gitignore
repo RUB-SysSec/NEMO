@@ -1,0 +1,8 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+trained/*.pack
+input/*.txt
+input/*.7z
+results/eval_result.txt

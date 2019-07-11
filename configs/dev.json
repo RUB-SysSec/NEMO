@@ -1,0 +1,10 @@
+{
+    "name" : "Development",
+    "eval_file" : "eval.txt",
+    "training_file" : "training.txt",
+    "alphabet" : "aeio1nrlst20mcuydh93bkgp84576vjfwzxAEqORLNISMTBYCP!.UGHDJ F-K*#V_\\XZW';Q],@&?~+$={^/%",
+    "lengths" : [4,6,8],
+    "ngram_size" : 4,
+    "no_cpus" : 8,
+    "progress_bar": true
+}
