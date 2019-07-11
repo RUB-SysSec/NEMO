@@ -4,7 +4,7 @@
 ''' This script loads the training and estimates the probability (strength) of some passwords
 :author: Maximilian Golla
 :contact: maximilian.golla@rub.de
-:version: 0.7.0, 2019-07-11
+:version: 0.7.1, 2019-07-11
 '''
 
 # Load external modules
@@ -61,8 +61,8 @@ def eval():
              # Determine correct model
             ngram_creator = _select_correct_markov_model(len(line), MARKOV_MODELS)
             if len(line) != ngram_creator.length: # Important to prevent generating "passwor", or "iloveyo", or "babygir"
-                sys.stderr.write("\x1b[1;%dm" % (31) + "Error, no Markov model for this length: {} {}\n".format(len(line),line) + "\x1b[0m")
-                fo.write("{} {}\t{}\n".format("Error, no Markov model for this length:", len(line), line))
+                sys.stderr.write("\x1b[1;%dm" % (31) + "Info: No Markov model for this length: {} {}\n".format(len(line),line) + "\x1b[0m")
+                fo.write("{} {}\t{}\n".format("Info: No Markov model for this length:", len(line), line))
                 continue
             if ngram_creator._is_in_alphabet(line): # Filter non-printable
                 ip = line[:ngram_creator.ngram_size-1]
@@ -81,8 +81,8 @@ def eval():
                 fo.write("{}\t{}\n".format(pw_prob,line))
                 fo.flush()
             else:
-                sys.stderr.write("\x1b[1;%dm" % (31) + "Error, password contains invalid characters: {}\n".format(line) + "\x1b[0m")
-                fo.write("{}\t{}\n".format("Error, password contains invalid characters", line))
+                sys.stderr.write("\x1b[1;%dm" % (31) + "Info: Password contains invalid characters: {}\n".format(line) + "\x1b[0m")
+                fo.write("{}\t{}\n".format("Info: Password contains invalid characters:", line))
                 continue
     fo.close()
 

@@ -4,7 +4,7 @@
 '''
 :author: Maximilian Golla
 :contact: maximilian.golla@rub.de
-:version: 0.7.0, 2019-07-11
+:version: 0.7.1, 2019-07-11
 :description: Sorts passwords in the strength meter outfile 'eval_result.txt' by likelihood
 :usage: pypy utils/sortresult.py results/eval_result.txt > results/eval_result_sorted.txt
 '''
@@ -17,7 +17,7 @@ with open(sys.argv[1], 'r') as inputfile:
     for line in inputfile:
         line = line.rstrip('\r\n')
         splitted = line.split('\t')
-        if splitted[0].startswith("Error, no Markov model for this length"):
+        if splitted[0].startswith("Info: No Markov model for this length:"):
             out.append((-1.0,splitted[1]))
             # Instead of adding them, you could also discard them
             # pass

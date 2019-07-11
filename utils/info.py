@@ -4,7 +4,7 @@
 '''
 :author: Maximilian Golla
 :contact: maximilian.golla@rub.de
-:version: 0.7.0, 2019-07-11
+:version: 0.7.1, 2019-07-11
 :description: Reports some statistics about password length, alphabet, ASCII encoding etc.
 :usage: pypy utils/info.py input/eval.txt
 '''

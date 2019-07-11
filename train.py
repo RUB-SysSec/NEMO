@@ -4,7 +4,7 @@
 ''' This script manages the training
 :author: Maximilian Golla
 :contact: maximilian.golla@rub.de
-:version: 0.7.0, 2019-07-11
+:version: 0.7.1, 2019-07-11
 '''
 
 # Load external modules

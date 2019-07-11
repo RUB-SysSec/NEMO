@@ -206,11 +206,34 @@ This includes:
 - `u-msgpack-python` # required to store/load the trained model to/from disk
 - `rainbow_logging_handler` # for colorful log messages
 
+#### Dataset
+While the Markov model can be used for a variety of things, in the following we focus on a simple **strength meter use case**.
+
+For this, you will need two files:
+
+- `input/training.txt`: Contains the passwords that you like to use to train your Markov model.
+- `input/eval.txt`: Contains the passwords, which guessability you like to estimate.
+
+I will not share any of those password files, but using "RockYou" or the "LinkedIn" password leak sounds like a great idea. Make sure to clean and (ASCII) filter the files to optimize the performance.
+
+For optimal accuracy, consider to train with a password distribution that is similar to the one you like to evaluate (e.g., 90%/10% split). Please do not train a dictionary / word list, this won't work.  :stuck_out_tongue_winking_eye: You need a real password distribution, i.e., including duplicates.
+
+- The file must be placed in the `input` folder.
+- One password per line.
+- File must be a real password distribution (not a dictionary / word list), i.e., must contain multiplicities.
+- All passwords that are shorter or longer than the specified `lengths` will be ignored.
+- All passwords that contain characters which are not in the specified `alphabet` will be ignored.
+During development, we tested our code with a file that contained ~10m passwords.
 
 #### Configuration
-Before training, you need to change the settings of the Markov model in `configs` folder in the file `configure.py`.
-`configure.py` will read the specified `.json` file.
-Here is an example:
+Before training, you need to provide a configuration file.
+You can specify which configuration file to use by editing the following line in `configure.py` in the `configs` folder:
+
+```
+with open('./configs/dev.json', 'r') as configfile:
+```
+
+Here is the default content of `dev.json`, feel free to edit the file as you like.
 ```
 {
     "name" : "Development",
@@ -225,6 +248,8 @@ Here is an example:
 ```
 
 Please note: You can use the `info.py` script in the `utils` folder to learn the alphabet of your training / evaluation file.
+
+For example run:
 
 `(nemo-venv) $ pypy utils/info.py input/eval.txt`
 
@@ -241,14 +266,6 @@ ASCII only: Yes
 If you encounter any issues, go to `train.py` and change the `train()` function from multi to single processing. This way, it is easier to debug the actual problem.
 
 #### Training
-For optimal accuracy, consider to train with a password distribution that is similar to the one you like to evaluate. Please do not train a dictionary / word list, this won't work.  :stuck_out_tongue_winking_eye:	 You need a real password distribution, i.e., including duplicates.
-
-- The file must be placed in the `input` folder.
-- One password per line.
-- File must be a real password distribution (not a dictionary / word list), i.e., must contain multiplicities.
-- All passwords that are shorter or longer than the specified `lengths` will be ignored.
-- All passwords that contain characters which are not in the specified `alphabet` will be ignored.
-During development, we tested our code with a file that contained ~10m passwords.
 
 ##### Training Requirements
 * ~2-5 minutes
@@ -261,13 +278,10 @@ To train the model run:
 
 `(nemo-venv) $ pypy train.py`
 
-You can abort the training by pressing `Ctrl + C`.
-
 Once the training is done, you should have multiple `*.pack` files in the `trained` folder. We use a lightweight [MessagePack](https://github.com/vsergeev/u-msgpack-python) implementation to serialize the model.
 
 A successful training looks like this:
 
-`(nemo-venv) $ pypy train.py`
 ```
 Start: 2019-07-06 15:54:13
 
@@ -328,8 +342,6 @@ For the strength estimation, we will read the trained *n-gram* frequencies from 
 
 `(nemo-venv) $ pypy meter.py`
 
-You can abort the strength estimation by pressing `Ctrl + C`.
-
 The result of this strength estimation can be found in the `results` folder in a file called `eval_result.txt`.
 
 ```
@@ -350,9 +362,12 @@ The result of this strength estimation can be found in the `results` folder in a
 The values are `<TAB>` separated.
 You can use `sortresult.py` from the `utils` folder to sort the passwords.
 
+For example run:
+
+`(nemo-venv) $ pypy utils/sortresult.py results/eval_result.txt > results/eval_result_sorted.txt`
+
 A successful strength estimation looks like this:
 
-`(nemo-venv) $ pypy meter.py`
 ```
 Start: 2019-07-06 16:07:58
 
@@ -382,8 +397,8 @@ Press Ctrl+C to shutdown
 [16:08:14.225]         meter.py Line  55 eval():     Training loaded from disk ...
 ...
 
-Error, no Markov model for this length: 13 jake1password
-Error, no Markov model for this length: 16 marasalvatrucha3
+Info: No Markov model for this length: 13 jake1password
+Info: No Markov model for this length: 16 marasalvatrucha3
 ...
 Done: 2019-07-06 16:08:14
 

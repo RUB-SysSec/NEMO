@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Planned
 - Support for backoff model
 
+## [0.7.1] - 2019-07-11
+### Fixed
+- Changed "Error" to "Info", if a Markov model of a specific size does not exist
+
 ## [0.7.0] - 2019-07-11
 ### Added
 - Added support for configuration files
@@ -40,6 +44,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 - Main modules: training (`ngram_creator.py`)
 
 [Unreleased]:
+[0.7.1]:
 [0.7.0]:
 [0.6.0]:
 [0.5.0]:
