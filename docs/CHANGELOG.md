@@ -1,10 +1,12 @@
-# Change Log
+# Changelog
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 ### Added
 - Natural Language Encoder (NLE)
+
+### Planned
 - Support for backoff model
 
 ## [0.7.1] - 2019-07-11
@@ -40,13 +42,3 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Initial version for NEMO
 - Main modules: training (`ngram_creator.py`)
-
-[Unreleased]:
-[0.7.1]:
-[0.7.0]:
-[0.6.0]:
-[0.5.0]:
-[0.4.0]:
-[0.3.0]:
-[0.2.0]:
-[0.1.0]:
