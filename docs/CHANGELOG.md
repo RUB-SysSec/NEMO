@@ -5,8 +5,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Natural Language Encoder (NLE)
-
-### Planned
 - Support for backoff model
 
 ## [0.7.1] - 2019-07-11
