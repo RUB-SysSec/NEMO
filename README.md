@@ -180,7 +180,7 @@ Install PyPy (for Python 2 or better Python 3), and create a virtual environment
 `$ virtualenv -p $(which pypy) nemo-venv`
 ```
 Running virtualenv with interpreter /usr/local/bin/pypy
-New pypy executable in /Users/<username>/test/bin/pypy
+New pypy executable in /home/<username>/nemo-venv/bin/pypy
 Installing setuptools, pip, wheel...
 done.
 ```
